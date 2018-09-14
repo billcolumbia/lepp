@@ -1,0 +1,8 @@
+{
+    "name": "itsyaboi/lepp",
+    "type": "project",
+    "license": "nuh",
+    "require": {
+        "vlucas/phpdotenv": "^2.5"
+    }
+}

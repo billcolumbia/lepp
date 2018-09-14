@@ -1,0 +1,5 @@
+.env
+.docker/data
+.docker/log
+vendor
+.idea

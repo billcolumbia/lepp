@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+
+  nginx:
+    build: ./.docker/config/nginx
+    depends_on:
+    - php-fpm
+    ports:
+    - 80:80
+    - 443:443
+    volumes:
+    - ./.docker/log/nginx:/var/log/nginx
+    - ./app:/var/app
+
+  php-fpm:
+    build: ./.docker/config/php
+    depends_on:
+    - db
+    volumes:
+    - ./app:/var/app
+    - ./.docker/log/xdebug:/tmp/xdebug_log
+
+  db:
+    image: postgres
+    ports:
+    - 3307:3306
+    volumes:
+    - ./.docker/data/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: boringuser
+      POSTGRES_DB: boringdb
